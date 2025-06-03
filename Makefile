@@ -40,10 +40,6 @@ dashboard:
 	@echo "🚀 Launching Gaming Behavior Analytics Dashboard..."
 	python run_dashboard.py
 
-# Start Jupyter notebook
-notebook:
-	@echo "📊 Starting Jupyter notebook server..."
-	jupyter notebook notebooks/
 
 # Clean generated files
 clean:
