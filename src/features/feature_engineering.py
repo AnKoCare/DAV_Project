@@ -24,10 +24,21 @@ class FeatureEngineer:
         """Create engagement-related features"""
         df_new = df.copy()
         
-        # Play intensity features
+        # Convert GameDifficulty to numerical if it's text
+        if 'GameDifficulty' in df_new.columns:
+            if df_new['GameDifficulty'].dtype == 'object':
+                difficulty_map = {'Easy': 1, 'Medium': 2, 'Hard': 3}
+                df_new['GameDifficulty_Numeric'] = df_new['GameDifficulty'].map(difficulty_map)
+                logger.info("GameDifficulty converted from text to numeric")
+            else:
+                df_new['GameDifficulty_Numeric'] = df_new['GameDifficulty']
+        
+        # Engagement intensity features
+        if 'SessionsPerWeek' in df_new.columns and 'AvgSessionDurationMinutes' in df_new.columns:
+            df_new['TotalWeeklyMinutes'] = df_new['SessionsPerWeek'] * df_new['AvgSessionDurationMinutes']
+        
         if 'PlayTimeHours' in df_new.columns and 'SessionsPerWeek' in df_new.columns:
             df_new['AvgHoursPerSession'] = df_new['PlayTimeHours'] / (df_new['SessionsPerWeek'] + 1e-8)
-            df_new['PlayIntensity'] = df_new['PlayTimeHours'] * df_new['SessionsPerWeek']
         
         # Purchase behavior features
         if 'InGamePurchases' in df_new.columns:
@@ -51,9 +62,16 @@ class FeatureEngineer:
                 labels=['Teen', 'YoungAdult', 'Adult', 'MiddleAged', 'Senior']
             )
         
-        # Game difficulty engagement
-        if 'GameDifficulty' in df_new.columns and 'PlayTimeHours' in df_new.columns:
-            df_new['DifficultyEngagement'] = df_new['GameDifficulty'] * df_new['PlayTimeHours']
+        # Game difficulty engagement - use numeric version
+        if 'GameDifficulty_Numeric' in df_new.columns and 'PlayTimeHours' in df_new.columns:
+            df_new['DifficultyEngagement'] = df_new['GameDifficulty_Numeric'] * df_new['PlayTimeHours']
+        
+        # Player progression features (for Kaggle dataset)
+        if 'PlayerLevel' in df_new.columns and 'PlayTimeHours' in df_new.columns:
+            df_new['LevelProgressionRate'] = df_new['PlayerLevel'] / (df_new['PlayTimeHours'] + 1e-8)
+        
+        if 'AchievementsUnlocked' in df_new.columns and 'PlayTimeHours' in df_new.columns:
+            df_new['AchievementRate'] = df_new['AchievementsUnlocked'] / (df_new['PlayTimeHours'] + 1e-8)
         
         logger.info(f"Created engagement features. New shape: {df_new.shape}")
         return df_new

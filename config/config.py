@@ -14,8 +14,11 @@ EXTERNAL_DATA_DIR = DATA_DIR / "external"
 MODELS_DIR = PROJECT_ROOT / "models"
 REPORTS_DIR = PROJECT_ROOT / "reports"
 
+# Dataset configuration
+DATASET_NAME = 'online_gaming_behavior_dataset.csv'  # Kaggle dataset
+# DATASET_NAME = 'sample_gaming_behavior_dataset.csv'  # Sample dataset for fallback
+
 # Data settings
-DATASET_NAME = "online_gaming_behavior_dataset.csv"
 TARGET_COLUMN = "EngagementLevel"  # This may vary based on actual dataset
 PLAYER_ID_COLUMN = "PlayerID"
 
@@ -26,12 +29,13 @@ VALIDATION_SIZE = 0.2
 
 # Feature engineering settings
 NUMERICAL_FEATURES = [
-    'Age', 'PlayTimeHours', 'InGamePurchases', 'GameDifficulty',
-    'SessionsPerWeek', 'AvgSessionDurationMinutes'
+    'PlayerID', 'Age', 'PlayTimeHours', 'SessionsPerWeek', 
+    'AvgSessionDurationMinutes', 'InGamePurchases', 'GameDifficulty',
+    'PlayerLevel', 'AchievementsUnlocked'  # Added new Kaggle fields
 ]
 
 CATEGORICAL_FEATURES = [
-    'Gender', 'Location', 'GameGenre', 'Platform'
+    'Gender', 'Location', 'GameGenre', 'GameDifficulty'  # Added GameDifficulty as it's categorical in Kaggle dataset
 ]
 
 # Model hyperparameters

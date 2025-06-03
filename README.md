@@ -7,27 +7,22 @@ Welcome to the Gaming Behavior Prediction project! This guide will help you set 
 ### 1. Installation
 ```bash
 # Install dependencies
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ### 2. Run Complete Analysis
 ```bash
 # Run the full pipeline (data processing, modeling, visualization)
-python src/main.py
+python3 src/main.py
 ```
 
 ### 3. Launch Interactive Dashboard
 ```bash
 # Start the interactive dashboard
-python run_dashboard.py
+python3 run_dashboard.py
 ```
 Then open http://127.0.0.1:8050 in your browser.
 
-### 4. Explore Jupyter Notebooks
-```bash
-# Launch Jupyter to explore the analysis notebooks
-jupyter notebook notebooks/
-```
 
 ## Project Components
 

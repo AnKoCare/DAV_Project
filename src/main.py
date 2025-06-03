@@ -186,7 +186,7 @@ class GamingBehaviorPipeline:
         logger.info(f"Target values after split: {y.unique()}")
         
         # Determine categorical and numerical columns after feature engineering
-        categorical_cols = ['Gender', 'Location', 'Platform', 'GameGenre', 'EngagementLevel',
+        categorical_cols = ['Gender', 'Location', 'GameGenre', 'GameDifficulty', 'EngagementLevel',
                            'SessionDurationCategory', 'AgeGroup', 'PlayerType', 'SpenderType']
         
         # Update categorical columns to only include those that exist in the dataframe
