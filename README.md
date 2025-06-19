@@ -1,200 +1,93 @@
-# Getting Started - Gaming Behavior Prediction
+# Project 10: Predict Online Gaming Behavior
 
-Welcome to the Gaming Behavior Prediction project! This guide will help you set up and run the complete analysis pipeline.
+## Mô tả Project
+Project phân tích và dự đoán hành vi chơi game trực tuyến sử dụng Random Forest, nhằm:
+- Khám phá các pattern trong hành vi gaming
+- Xây dựng model machine learning để dự đoán mức độ engagement của người chơi
+- Thực hiện nghiên cứu trong lĩnh vực gaming analytics
 
-## Quick Start
+## Cấu trúc Project
+```
+DAV_FinalProject/
+├── Dataset/
+│   └── online_gaming_behavior_dataset.csv
+├── gaming_behavior_analysis.ipynb
+├── requirements.txt
+├── README.md
+└── Requirement.png
+```
 
-### 1. Installation
+## Cài đặt
+
+1. Clone hoặc download project
+2. Cài đặt dependencies:
 ```bash
-# Install dependencies
-pip3 install -r requirements.txt
-```
-
-### 2. Run Complete Analysis
-```bash
-# Run the full pipeline (data processing, modeling, visualization)
-python3 src/main.py
-```
-
-### 3. Launch Interactive Dashboard
-```bash
-# Start the interactive dashboard
-python3 run_dashboard.py
-```
-Then open http://127.0.0.1:8050 in your browser.
-
-
-## Project Components
-
-### 🔧 Core Modules
-
-**Data Processing (`src/data/`)**
-- `data_loader.py`: Load and clean gaming behavior data
-- Handles missing values, duplicates, and basic preprocessing
-
-**Feature Engineering (`src/features/`)**
-- `feature_engineering.py`: Create engagement and behavioral features
-- Player segmentation, interaction features, and scaling
-
-**Machine Learning (`src/models/`)**
-- `model_trainer.py`: Train and evaluate multiple ML models
-- Supports Random Forest, XGBoost, LightGBM, SVM, Logistic Regression
-
-**Visualization (`src/visualization/`)**
-- `visualizer.py`: Generate comprehensive analytics charts
-- Player demographics, gaming patterns, correlation analysis
-
-### 📊 Analytics Dashboard
-
-The interactive dashboard provides:
-- **Real-time Filtering**: By platform, age range, engagement level
-- **Key Metrics**: Player count, average playtime, revenue
-- **Visual Analytics**: Demographics, engagement patterns, correlations
-- **Player Segmentation**: Casual, Hardcore, Whale, VIP segments
-
-### 📈 Analysis Outputs
-
-After running the pipeline, you'll find:
-
-**Reports (`reports/`)**
-- `analysis_report.md`: Comprehensive findings and recommendations
-- `player_demographics.png`: Age, gender, location, platform analysis
-- `gaming_patterns.png`: Play time, sessions, purchases distribution
-- `engagement_analysis.png`: Engagement levels by demographics
-- `correlation_matrix.png`: Feature relationships
-- `player_segments.png`: Player behavior segmentation
-- `model_performance.png`: ML model comparison
-- `feature_importance.png`: Key predictive factors
-
-**Models (`models/`)**
-- Trained ML models saved as `.joblib` files
-- Feature engineering pipeline for production use
-
-**Data (`data/`)**
-- `raw/`: Original dataset
-- `processed/`: Cleaned and feature-engineered data
-
-## Key Features
-
-### 🎯 Predictive Modeling
-- **Player Retention Prediction**: Identify players likely to churn
-- **Engagement Level Classification**: Low/Medium/High engagement
-- **Revenue Prediction**: Estimate player lifetime value
-- **Behavior Pattern Recognition**: Casual vs Hardcore classification
-
-### 📊 Business Analytics
-- **Player Segmentation**: Strategic grouping for targeted marketing
-- **Platform Performance**: Cross-platform engagement comparison
-- **Demographic Insights**: Age, gender, location impact analysis
-- **Monetization Analysis**: Spending behavior and revenue optimization
-
-### 🔍 Advanced Features
-- **Feature Importance**: Understand key engagement drivers
-- **Correlation Analysis**: Discover hidden relationships
-- **Interactive Filtering**: Real-time data exploration
-- **Automated Reporting**: Generated insights and recommendations
-
-## Dataset Information
-
-The project works with gaming behavior data containing:
-
-**Player Demographics**
-- Age, Gender, Location
-- Platform preference (PC, Mobile, Console, VR)
-
-**Gaming Behavior**
-- Play time hours, Sessions per week
-- Average session duration
-- Game genre preferences, Difficulty levels
-
-**Engagement Metrics**
-- In-game purchases
-- Engagement level (Low/Medium/High)
-- Player segments and behavior patterns
-
-## Customization
-
-### Adding New Features
-```python
-# In src/features/feature_engineering.py
-def create_custom_features(self, df):
-    # Add your custom feature engineering logic
-    df['custom_metric'] = df['feature1'] / df['feature2']
-    return df
-```
-
-### Adding New Models
-```python
-# In src/models/model_trainer.py
-def _initialize_models(self):
-    self.models['custom_model'] = YourCustomModel()
-```
-
-### Customizing Visualizations
-```python
-# In src/visualization/visualizer.py
-def plot_custom_analysis(self, df):
-    # Add your custom visualization logic
-    pass
-```
-
-## Troubleshooting
-
-### Common Issues
-
-**Import Errors**
-```bash
-# Make sure you're in the project root directory
-cd path/to/DAV_Project
-python src/main.py
-```
-
-**Missing Dependencies**
-```bash
-# Install all required packages
 pip install -r requirements.txt
 ```
 
-**Dashboard Not Loading**
+3. Khởi động Jupyter Notebook:
 ```bash
-# Check if port 8050 is available
-# Or modify DASHBOARD_PORT in config/config.py
+jupyter notebook
 ```
 
-**Memory Issues with Large Datasets**
-- Reduce sample size in configuration
-- Use data chunking for very large files
-- Consider upgrading system memory
+4. Mở file `gaming_behavior_analysis.ipynb`
 
-### Getting Help
+## Nội dung Analysis
 
-1. **Check Logs**: Look at `gaming_behavior_prediction.log` for detailed error messages
-2. **Validate Data**: Ensure your dataset matches expected format
-3. **Review Configuration**: Check `config/config.py` for correct settings
-4. **Test Components**: Run individual modules to isolate issues
+### 1. Data Exploration
+- Thống kê mô tả dataset
+- Phân tích missing values
+- Hiểu cấu trúc dữ liệu gaming behavior
 
-## Next Steps
+### 2. Exploratory Data Analysis (EDA)
+- Visualization phân phối engagement levels
+- Phân tích correlation giữa các features
+- Pattern analysis theo genre, age, gender
 
-### Production Deployment
-1. **Model Serving**: Deploy trained models using Flask/FastAPI
-2. **Database Integration**: Connect to production gaming databases
-3. **Real-time Pipeline**: Set up streaming data processing
-4. **Monitoring**: Implement model performance tracking
+### 3. Machine Learning Model
+- Preprocessing dữ liệu
+- Random Forest Classification
+- Hyperparameter tuning với GridSearchCV
+- Model evaluation và feature importance
 
-### Advanced Analytics
-1. **Time Series Analysis**: Track engagement trends over time
-2. **Cohort Analysis**: Study player retention patterns
-3. **A/B Testing**: Experiment with game features
-4. **Churn Prediction**: Proactive player retention strategies
+### 4. Gaming Analytics Insights
+- Player segmentation analysis
+- Business recommendations
+- Churn risk analysis
+- Strategies cho retention và monetization
 
-### Business Integration
-1. **Marketing Automation**: Target campaigns based on predictions
-2. **Game Design**: Use insights for feature development
-3. **Revenue Optimization**: Implement dynamic pricing strategies
-4. **Player Support**: Identify players needing assistance
+### 5. Model Deployment
+- Function để predict engagement cho player mới
+- Example usage và testing
 
----
+## Key Features của Dataset
 
-🎮 **Happy Gaming Analytics!** 
+- **PlayerID**: ID người chơi
+- **Age**: Tuổi
+- **Gender**: Giới tính  
+- **Location**: Vị trí địa lý
+- **GameGenre**: Thể loại game
+- **PlayTimeHours**: Tổng giờ chơi
+- **InGamePurchases**: Mua hàng trong game
+- **GameDifficulty**: Độ khó game
+- **SessionsPerWeek**: Số session/tuần
+- **AvgSessionDurationMinutes**: Thời lượng session trung bình
+- **PlayerLevel**: Level người chơi
+- **AchievementsUnlocked**: Số achievement đã mở
+- **EngagementLevel**: Mức độ engagement (Target variable)
 
-For questions or contributions, please refer to the project documentation or create an issue. 
+## Kết quả chính
+
+1. **Model Performance**: Random Forest đạt độ chính xác cao trong việc dự đoán engagement level
+2. **Top Factors**: SessionsPerWeek, PlayTimeHours, PlayerLevel là các yếu tố quan trọng nhất
+3. **Business Insights**: Recommendations cụ thể cho retention, game design, marketing
+
+## Ứng dụng thực tế
+
+- **Game Development**: Optimize game design dựa trên engagement patterns
+- **Marketing**: Target campaigns theo player segments
+- **Player Experience**: Personalize content và difficulty
+- **Business Strategy**: Improve retention và monetization
+
+## Tác giả
+Data Analysis and Visualization Final Project 
