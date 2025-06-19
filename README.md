@@ -88,6 +88,3 @@ jupyter notebook
 - **Marketing**: Target campaigns theo player segments
 - **Player Experience**: Personalize content và difficulty
 - **Business Strategy**: Improve retention và monetization
-
-## Tác giả
-Data Analysis and Visualization Final Project 
